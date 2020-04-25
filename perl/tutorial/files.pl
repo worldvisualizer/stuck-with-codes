@@ -46,7 +46,7 @@ foreach $fname (@ARGV) {
   while($line = <FILE>) {
     print $line;
   }
-  close(FILE); # don't forget to close file
+  close(FILE); # don't forget to close filesdf
 }
 
 
