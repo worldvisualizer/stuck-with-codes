@@ -1,6 +1,8 @@
-// Javascript Fundamentals
+"use strict";
 
-// Type conversions
+// Javascript Fundamentals - All the Primitives
+
+// Type conversions ------------
 let value = true;
 console.log(value = String(value));
 
@@ -19,7 +21,7 @@ Foo.prototype.toString = function() {
 	return `[object Foo: instance vars: ${this.var}]`;
 }
 
-// bitwise operations
+// Bitwise operations -------------
 
 function dec2bin(dec) {
     console.log((dec >>> 0).toString(2));
@@ -39,12 +41,14 @@ dec2bin(integerNumber >>> 1); // zerofill right shift
 // modifying in place
 
 // three operations in one line
-for (a = 1, b = 3, c = a * b; a < 10; a++) {
+for (let a = 1, b = 3, c = a * b; a < 10; a++) {
   // comma has a very low precedence
 }
 
-let a = 2;
-let x = 1 + (a *= 2); // rightmost, highest precedence first
+let z = 2;
+let x = 1 + (z *= 2); // rightmost, highest precedence first
+console.log(x);
+
 
 console.log("" + 1 + 0);
 console.log("" - 1 + 0);
@@ -62,3 +66,31 @@ console.log(null + 1);
 console.log(undefined + 1);
 console.log(" \t \n" - 2);
 
+
+// Comparisons -------------------
+
+console.log("2 > 1", 2 > 1);
+console.log("'A' < 'Z'", 'A' < 'Z');
+console.log("'A' < 'z'", 'A' < 'z');
+console.log("'Glow' > 'Glee'", 'Glow' > 'Glee');
+console.log("'Bee' > 'Be'", 'Bee' > 'Be');
+console.log("'2' > 1", '2' > 1);
+console.log("'01' == 1", '01' == 1);
+console.log("true == 1", true == 1);
+console.log("false == 0", false == 0);
+console.log("Boolean(0) == Boolean('0')", 
+	Boolean(0) == Boolean("0"));
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
+console.log();
