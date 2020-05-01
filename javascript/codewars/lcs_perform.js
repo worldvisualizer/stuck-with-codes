@@ -1,6 +1,9 @@
 const Test = require('./test');
 
 // don't forget about padding
+function initializeMatrix(len1, len2) {
+  return new Array(len1).fill(0).map(() => new Array(len2).fill(0));
+}
 
 function lcs(str1, str2) {
   const len1 = str1.length;
@@ -42,6 +45,7 @@ function backtrack(mat, str1, str1Length, str2Length) {
   if (!mat[0].length) {
     return '';
   }
+  let ret = '';
   let i = str1Length;
   let j = str2Length;
   while (i > 0 && j > 0) {
@@ -67,40 +71,41 @@ Test.describe("Backtracking LCS", () => {
       [],
       [],
     ];
+    const str = 'bdfe';
     Test.assertEquals(backtrack(mat, str, 4, 5), "bdf");
-  }
+  });
 })
 
-Test.describe("Longest Common Subsequence",()=>{
-  Test.it("Example tests",()=>{
-    Test.assertEquals( lcs( "", "" ), "" );
-    Test.assertEquals( lcs( "abc", "" ), "" );
-    Test.assertEquals( lcs( "", "abc" ), "" );
-    Test.assertEquals( lcs( "a", "b" ), "" );
-    Test.assertEquals( lcs( "a", "a" ), "a" );
-    Test.assertEquals( lcs( "abc", "ac" ), "ac" );
-    Test.assertEquals( lcs( "abcdef", "abc" ), "abc" );
-    Test.assertEquals( lcs( "abcdef", "acf" ), "acf" );
-    Test.assertEquals( lcs( "anothertest", "notatest" ), "nottest" );
-    Test.assertEquals( lcs( "132535365", "123456789" ), "12356" );
-    Test.assertEquals( lcs( "nothardlythefinaltest", "zzzfinallyzzz" ), "final" );
-    Test.assertEquals( lcs( "abcdefghijklmnopq", "apcdefghijklmnobq" ), "acdefghijklmnoq" );
+Test.describe("LCS Length Test",() => {
+  Test.it("Example tests",() => {
+    Test.assertEquals(lcsLength("", ""), 0);
+    Test.assertEquals(lcsLength("abc", ""), 0);
+    Test.assertEquals(lcsLength("", "abc"), 0);
+    Test.assertEquals(lcsLength("a", "b"), 0);
+    Test.assertEquals(lcsLength("a", "a"), 1);
+    Test.assertEquals(lcsLength("abc", "ac"), 2);
+    Test.assertEquals(lcsLength("abcdef", "abc"), 3);
+    Test.assertEquals(lcsLength("abcdef", "acf"), 3);
+    Test.assertEquals(lcsLength("anothertest", "notatest"), 7);
+    Test.assertEquals(lcsLength("132535365", "123456789"), 5);
+    Test.assertEquals(lcsLength("nothardlythefinaltest", "zzzfinallyzzz"), 5);
+    Test.assertEquals(lcsLength("abcdefghijklmnopq", "apcdefghijklmnobq"), 15);
   });
 });
 
-Test.describe("Longest Common Subsequence",()=>{
-  Test.it("Example tests",()=>{
-    Test.assertEquals( lcs( "", "" ), "" );
-    Test.assertEquals( lcs( "abc", "" ), "" );
-    Test.assertEquals( lcs( "", "abc" ), "" );
-    Test.assertEquals( lcs( "a", "b" ), "" );
-    Test.assertEquals( lcs( "a", "a" ), "a" );
-    Test.assertEquals( lcs( "abc", "ac" ), "ac" );
-    Test.assertEquals( lcs( "abcdef", "abc" ), "abc" );
-    Test.assertEquals( lcs( "abcdef", "acf" ), "acf" );
-    Test.assertEquals( lcs( "anothertest", "notatest" ), "nottest" );
-    Test.assertEquals( lcs( "132535365", "123456789" ), "12356" );
-    Test.assertEquals( lcs( "nothardlythefinaltest", "zzzfinallyzzz" ), "final" );
-    Test.assertEquals( lcs( "abcdefghijklmnopq", "apcdefghijklmnobq" ), "acdefghijklmnoq" );
+Test.describe("Longest Common Subsequence",() => {
+  Test.it("Example tests",() => {
+    Test.assertEquals(lcs("", ""), "");
+    Test.assertEquals(lcs("abc", ""), "");
+    Test.assertEquals(lcs("", "abc"), "");
+    Test.assertEquals(lcs("a", "b"), "");
+    Test.assertEquals(lcs("a", "a"), "a");
+    Test.assertEquals(lcs("abc", "ac"), "ac");
+    Test.assertEquals(lcs("abcdef", "abc"), "abc");
+    Test.assertEquals(lcs("abcdef", "acf"), "acf");
+    Test.assertEquals(lcs("anothertest", "notatest"), "nottest");
+    Test.assertEquals(lcs("132535365", "123456789"), "12356");
+    Test.assertEquals(lcs("nothardlythefinaltest", "zzzfinallyzzz"), "final");
+    Test.assertEquals(lcs("abcdefghijklmnopq", "apcdefghijklmnobq"), "acdefghijklmnoq");
   });
 });
