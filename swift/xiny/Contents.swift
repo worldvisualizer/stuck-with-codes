@@ -148,17 +148,53 @@ let implicitString = unwrappedString // doesn't require an exclamation mark
 // Control Statements
 
 // Switch: must be exhaustive, does not implicitly fall through like JS
-let vegetable = "red pepper"
-let vegetableComment: String
-switch vegetable {
-case "celery":
-    vegetableComment = "Add some raisins and make ants on a log."
-case "cucumber", "watercress": // match multiple values
-    vegetableComment = "That would make a good tea sandwich."
-case let localScopeValue where localScopeValue.hasSuffix("pepper"):
-    vegetableComment = "Is it a spicy \(localScopeValue)?"
-default: // required (in order to cover all possible input)
-    vegetableComment = "Everything tastes good in soup."
+func foo2() {
+    let vegetable = "red pepper"
+    let vegetableComment: String
+    switch vegetable {
+    case "celery":
+        vegetableComment = "Add some raisins and make ants on a log."
+    case "cucumber", "watercress": // match multiple values
+        vegetableComment = "That would make a good tea sandwich."
+    case let localScopeValue where localScopeValue.hasSuffix("pepper"):
+        vegetableComment = "Is it a spicy \(localScopeValue)?"
+    default: // required (in order to cover all possible input)
+        vegetableComment = "Everything tastes good in soup."
+    }
+    print(vegetableComment)
 }
-print(vegetableComment)
+// For-each loop: yeah boiii
+for element in shoppingList {
+    print(element)
+}
 
+// Iterating through a dictionary does not guarantee an order
+for (person, job) in immutableOccupations {
+    print("\(person) and their job: \(job)")
+}
+
+for i in 1...5 { // 1 2 3 4 5
+    print(i, terminator: " ") // oh? default parameter?
+}
+
+for i in 0..<5 {
+    print(i, terminator: " ") // 0 1 2 3 4
+}
+
+var i = 0
+while i < 5 {
+    i += Bool.random() ? 1 : 0
+    print(i)
+}
+
+repeat {
+    i -= 1
+    i += Int.random(in: 0...3)
+} while i < 5 // like a do-while loop in other languages
+
+// Let's do Functions
+// Functions: first-class type, can b
+func greet(name: String, day: String) -> String {
+    return "Hello \(name), today is \(day)"
+}
+greet(name: "Bob", day: "tuesday")
