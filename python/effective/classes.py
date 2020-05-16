@@ -220,6 +220,24 @@ def mapreduce(worker_class, input_class, config):
     workers = worker_class.create_workers(input_class, config)
     return execute(workers)
 
+# who knew @classmethod could be alternative constructors
+
+# Item 40: Initialize Parent Classes with super
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
