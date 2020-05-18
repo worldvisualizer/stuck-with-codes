@@ -193,8 +193,82 @@ repeat {
 } while i < 5 // like a do-while loop in other languages
 
 // Let's do Functions
-// Functions: first-class type, can b
+// Functions: first-class type, can be passed around
 func greet(name: String, day: String) -> String {
     return "Hello \(name), today is \(day)"
 }
 greet(name: "Bob", day: "tuesday")
+
+// this is amazing. parameter aliasing is possible
+func sayHello(to name: String, onDay day: String) -> String {
+    return "Hello \(name), the day is \(day)"
+}
+sayHello(to: "John", onDay: "Sunday")
+
+// notice that return types are not mentioned with ->
+// also argument labels can be blank
+func say(_ message: String) {
+    print(#"I say"\#(message)""#) // wtf is this notation
+}
+say("hello")
+
+func printParameters(
+    requireParameter r: Int,
+    optionalParameter o: Int = 10) {
+
+    print("Required: \(r), Optional: \(o)")
+}
+printParameters(requiredParameter: 3)
+printParameters(requiredParameter: 3, optionalParameter: 6)
+
+// variadic args (positional args) - only one set per func
+func setup(numbers: Int...) {
+    let _ = numbers[0]
+    let _ = numbers.count // this is syntactically correct?
+}
+var someIntA = 7
+var someIntB = 3
+
+// inout types: passing by reference.
+func swapTwoInts(a: inout Int, b: inout Int) {
+    let tempA = a
+    a = b
+    b = tempA
+}
+swapTwoInts(a: &someIntA, b: &someIntB)
+
+print(someIntB)
+type(of: greet) // (String, String) -> String
+type(of: helloWorld) // () -> Void
+
+// specifying type of the function as clearly shown above
+func makeIncrementer() -> ((Int) -> Int) {
+    func addOne(number: Int) -> Int {
+        return 1 + number
+    }
+    return addOne
+}
+var increment = makeIncrementer()
+increment(7) // returning function and executing that function
+
+// another example of function as parameters
+func performFunction(
+    _ function: (String, String) -> String,
+    on string1: String, 
+    and string2: String) {
+    let result = function(string1, string2)
+    print("Result: \(result)")
+}
+// hmm... currying possible?
+
+
+
+
+
+
+
+
+
+
+
+
