@@ -1,0 +1,202 @@
+File: bash.info,  Node: Redirections,  Next: Executing Commands,  Prev: Shell Expansions,  Up: Basic Shell Features
+
+3.6 Redirections
+================
+
+Before a command is executed, its input and output may be REDIRECTED
+using a special notation interpreted by the shell.  Redirection may
+also be used to open and close files for the current shell execution
+environment.  The following redirection operators may precede or appear
+anywhere within a simple command or may follow a command.  Redirections
+are processed in the order they appear, from left to right.
+
+   In the following descriptions, if the file descriptor number is
+omitted, and the first character of the redirection operator is `<',
+the redirection refers to the standard input (file descriptor 0).  If
+the first character of the redirection operator is `>', the redirection
+refers to the standard output (file descriptor 1).
+
+   The word following the redirection operator in the following
+descriptions, unless otherwise noted, is subjected to brace expansion,
+tilde expansion, parameter expansion, command substitution, arithmetic
+expansion, quote removal, filename expansion, and word splitting.  If
+it expands to more than one word, Bash reports an error.
+
+   Note that the order of redirections is significant.  For example,
+the command
+     ls > DIRLIST 2>&1
+   directs both standard output (file descriptor 1) and standard error
+(file descriptor 2) to the file DIRLIST, while the command
+     ls 2>&1 > DIRLIST
+   directs only the standard output to file DIRLIST, because the
+standard error was duplicated as standard output before the standard
+output was redirected to DIRLIST.
+
+   Bash handles several filenames specially when they are used in
+redirections, as described in the following table:
+
+`/dev/fd/FD'
+     If FD is a valid integer, file descriptor FD is duplicated.
+
+`/dev/stdin'
+     File descriptor 0 is duplicated.
+
+`/dev/stdout'
+     File descriptor 1 is duplicated.
+
+`/dev/stderr'
+     File descriptor 2 is duplicated.
+
+`/dev/tcp/HOST/PORT'
+     If HOST is a valid hostname or Internet address, and PORT is an
+     integer port number or service name, Bash attempts to open a TCP
+     connection to the corresponding socket.
+
+`/dev/udp/HOST/PORT'
+     If HOST is a valid hostname or Internet address, and PORT is an
+     integer port number or service name, Bash attempts to open a UDP
+     connection to the corresponding socket.
+
+
+   A failure to open or create a file causes the redirection to fail.
+
+   Redirections using file descriptors greater than 9 should be used
+with care, as they may conflict with file descriptors the shell uses
+internally.
+
+3.6.1 Redirecting Input
+-----------------------
+
+Redirection of input causes the file whose name results from the
+expansion of WORD to be opened for reading on file descriptor `n', or
+the standard input (file descriptor 0) if `n' is not specified.
+
+   The general format for redirecting input is:
+     [N]<WORD
+
+3.6.2 Redirecting Output
+------------------------
+
+Redirection of output causes the file whose name results from the
+expansion of WORD to be opened for writing on file descriptor N, or the
+standard output (file descriptor 1) if N is not specified.  If the file
+does not exist it is created; if it does exist it is truncated to zero
+size.
+
+   The general format for redirecting output is:
+     [N]>[|]WORD
+
+   If the redirection operator is `>', and the `noclobber' option to
+the `set' builtin has been enabled, the redirection will fail if the
+file whose name results from the expansion of WORD exists and is a
+regular file.  If the redirection operator is `>|', or the redirection
+operator is `>' and the `noclobber' option is not enabled, the
+redirection is attempted even if the file named by WORD exists.
+
+3.6.3 Appending Redirected Output
+---------------------------------
+
+Redirection of output in this fashion causes the file whose name
+results from the expansion of WORD to be opened for appending on file
+descriptor N, or the standard output (file descriptor 1) if N is not
+specified.  If the file does not exist it is created.
+
+   The general format for appending output is:
+     [N]>>WORD
+
+3.6.4 Redirecting Standard Output and Standard Error
+----------------------------------------------------
+
+Bash allows both the standard output (file descriptor 1) and the
+standard error output (file descriptor 2) to be redirected to the file
+whose name is the expansion of WORD with this construct.
+
+   There are two formats for redirecting standard output and standard
+error:
+     &>WORD
+   and
+     >&WORD
+   Of the two forms, the first is preferred.  This is semantically
+equivalent to
+     >WORD 2>&1
+
+3.6.5 Here Documents
+--------------------
+
+This type of redirection instructs the shell to read input from the
+current source until a line containing only WORD (with no trailing
+blanks) is seen.  All of the lines read up to that point are then used
+as the standard input for a command.
+
+   The format of here-documents is:
+     <<[-]WORD
+             HERE-DOCUMENT
+     DELIMITER
+
+   No parameter expansion, command substitution, arithmetic expansion,
+or filename expansion is performed on WORD.  If any characters in WORD
+are quoted, the DELIMITER is the result of quote removal on WORD, and
+the lines in the here-document are not expanded.  If WORD is unquoted,
+all lines of the here-document are subjected to parameter expansion,
+command substitution, and arithmetic expansion.  In the latter case,
+the character sequence `\newline' is ignored, and `\' must be used to
+quote the characters `\', `$', and ``'.
+
+   If the redirection operator is `<<-', then all leading tab
+characters are stripped from input lines and the line containing
+DELIMITER.  This allows here-documents within shell scripts to be
+indented in a natural fashion.
+
+3.6.6 Here Strings
+------------------
+
+A variant of here documents, the format is:
+     <<< WORD
+
+   The WORD is expanded and supplied to the command on its standard
+input.
+
+3.6.7 Duplicating File Descriptors
+----------------------------------
+
+The redirection operator
+     [N]<&WORD
+   is used to duplicate input file descriptors.  If WORD expands to one
+or more digits, the file descriptor denoted by N is made to be a copy
+of that file descriptor.  If the digits in WORD do not specify a file
+descriptor open for input, a redirection error occurs.  If WORD
+evaluates to `-', file descriptor N is closed.  If N is not specified,
+the standard input (file descriptor 0) is used.
+
+   The operator
+     [N]>&WORD
+   is used similarly to duplicate output file descriptors.  If N is not
+specified, the standard output (file descriptor 1) is used.  If the
+digits in WORD do not specify a file descriptor open for output, a
+redirection error occurs.  As a special case, if N is omitted, and WORD
+does not expand to one or more digits, the standard output and standard
+error are redirected as described previously.
+
+3.6.8 Moving File Descriptors
+-----------------------------
+
+The redirection operator
+     [N]<&DIGIT-
+   moves the file descriptor DIGIT to file descriptor N, or the
+standard input (file descriptor 0) if N is not specified.  DIGIT is
+closed after being duplicated to N.
+
+   Similarly, the redirection operator
+     [N]>&DIGIT-
+   moves the file descriptor DIGIT to file descriptor N, or the
+standard output (file descriptor 1) if N is not specified.
+
+3.6.9 Opening File Descriptors for Reading and Writing
+------------------------------------------------------
+
+The redirection operator
+     [N]<>WORD
+   causes the file whose name is the expansion of WORD to be opened for
+both reading and writing on file descriptor N, or on file descriptor 0
+if N is not specified.  If the file does not exist, it is created.
+
