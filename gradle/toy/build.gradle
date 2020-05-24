@@ -1,6 +1,7 @@
 import org.apache.commons.codec.binary.Base64
 
 // this is the config about the build script.
+// if build script needs external dependencies.
 buildscript {
     repositories {
         mavenCentral()

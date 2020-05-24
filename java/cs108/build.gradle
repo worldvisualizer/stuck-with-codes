@@ -4,3 +4,78 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds
  */
+apply plugin: 'java'
+apply plugin: 'jacoco'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    // this makes import Base64 possible.
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.junit.platform:junit-platform-commons:1.0.0-M4'
+    testCompile 'org.junit.platform:junit-platform-console:1.0.0-M4'
+    testCompile 'org.junit.platform:junit-platform-engine:1.0.0-M4'
+    testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M4'
+    testRuntime 'org.junit.vintage:junit-vintage-engine:4.12.0-M4'
+}
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src/main/java'
+    }
+  }
+  test {
+    java {
+      srcDir 'src/test/java'
+    }
+  }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+
+        rule {
+            enabled = false
+            element = 'CLASS'
+            includes = ['org.gradle.*']
+
+            limit {
+                counter = 'LINE'
+                value = 'TOTALCOUNT'
+                maximum = 0.3
+            }
+        }
+    }
+}
+
+test {
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+    }
+    // Use junit platform for unit tests
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
