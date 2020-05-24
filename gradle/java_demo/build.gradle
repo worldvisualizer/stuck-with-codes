@@ -9,6 +9,19 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    /*
+        Features:
+        1) compileJava task -> compile source in src/main/java
+        2) compileTestJava task -> compile source in src/test/java
+        3) test -> runs test in src/test/java
+        4) jar -> packages main classes and src/main/resources into <project>-<version>.jar
+        5) javadoc -> generates javadoc for main classes
+    */
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 version = '0.1.0'
