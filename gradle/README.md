@@ -1,3 +1,11 @@
+### Projects and Tasks
+
+- Everything in Gradle is either project or task.
+- Every gradle build is made up of one or more projects.
+    - could be JAR, web app, ZIP, etc.
+- Each project is made up of one or more tasks
+- Task: some atomic piece of work performed by build.
+
 ### How is the Gradle Project Organized
 
 ├── build.gradle                      # build script
