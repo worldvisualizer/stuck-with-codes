@@ -16,16 +16,83 @@
 // checkstyle for linting
 // compilation and running and making jar file using Gradle
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.security.*;
 
 public class LearnJava {
-    public static void main(String[] args) {
-        // main method as an entry point.
-        // java programs starts by running a main method
-        // of the class it intends to run.
+    public static void learnStaticVariables() {
+        // for static variables... this is possible
+        // Double Brace Initialization
+        // The Java Language has no syntax for how to create static Collections
+        // in an easy way. Usually you end up in the following way:
+        private static final Set<String> COUNTRIES = new HashSet<String>();
+        static {
+           COUNTRIES.add("DENMARK");
+           COUNTRIES.add("SWEDEN");
+           COUNTRIES.add("FINLAND");
+        }
 
+        // first brace creates Anonymous Inner Class 
+        // and second one declares an instance initializer block
+        private static final Set<String> COUNTRIES = new HashSet<String>() {{
+            add("DENMARK");
+            add("SWEDEN");
+            add("FINLAND");
+        }}
+    }
+
+    public static void learnArrays() {
+        int[] a = new int[10];
+        int[] b = new int[10];
+        Arrays.equals(a, b); // same reference?
+        Arrays.deepEquals(a, b); // same contents?
+        int[] c;
+        System.arraycopy(a, 0, c, 0, a.length);
+
+        int temp;
+        int[][] grid = new int[10][20];
+        grid[0][1] = 10;
+        grid[9][19] = 2;
+        temp = grid.length; // 10
+        temp = grid[0].length; // 20
+
+        int[][] gridCopy;
+        System.arraycopy(grid, 0, gridCopy, 0, grid.length);
+        // just copies pointers in the outer 1-d array
+    }
+
+    public static void learnBigs() {
+        // BigInteger - Immutable arbitrary-precision integers
+        //
+        // BigInteger is a data type that allows programmers to manipulate
+        // integers longer than 64-bits. Integers are stored as an array of
+        // of bytes and are manipulated using functions built into BigInteger
+        //
+        // BigInteger can be initialized using an array of bytes or a string.
+        BigInteger fooBigInteger = new BigInteger(fooByteArray);
+
+        // BigDecimal - Immutable, arbitrary-precision signed decimal number
+        //
+        // A BigDecimal takes two parts: an arbitrary precision integer
+        // unscaled value and a 32-bit integer scale
+        //
+        // BigDecimal allows the programmer complete control over decimal
+        // rounding. It is recommended to use BigDecimal with currency values
+        // and where exact decimal precision is required.
+        //
+        // BigDecimal can be initialized with an int, long, double or String
+        // or by initializing the unscaled value (BigInteger) and scale (int).
+        BigDecimal fooBigDecimal = new BigDecimal(fooBigInteger, fooInt);
+
+        // Be wary of the constructor that takes a float or double as
+        // the inaccuracy of the float/double will be copied in BigDecimal.
+        // Prefer the String constructor when you need an exact value.
+        BigDecimal tenCents = new BigDecimal("0.1");
+    }
+
+    public static void learnPrimitives() {
         // is this possible? does not seem like it
         // import java.util.Scanner;
         Scanner scanner = new Scanner(System.in);
@@ -69,51 +136,15 @@ public class LearnJava {
         float fooFloat = 234.5f;
         // double - 64 bit
         double fooDouble = 123.4;
+    }
 
-        // BigInteger - Immutable arbitrary-precision integers
-        //
-        // BigInteger is a data type that allows programmers to manipulate
-        // integers longer than 64-bits. Integers are stored as an array of
-        // of bytes and are manipulated using functions built into BigInteger
-        //
-        // BigInteger can be initialized using an array of bytes or a string.
-        BigInteger fooBigInteger = new BigInteger(fooByteArray);
-
-        // BigDecimal - Immutable, arbitrary-precision signed decimal number
-        //
-        // A BigDecimal takes two parts: an arbitrary precision integer
-        // unscaled value and a 32-bit integer scale
-        //
-        // BigDecimal allows the programmer complete control over decimal
-        // rounding. It is recommended to use BigDecimal with currency values
-        // and where exact decimal precision is required.
-        //
-        // BigDecimal can be initialized with an int, long, double or String
-        // or by initializing the unscaled value (BigInteger) and scale (int).
-        BigDecimal fooBigDecimal = new BigDecimal(fooBigInteger, fooInt);
-
-        // Be wary of the constructor that takes a float or double as
-        // the inaccuracy of the float/double will be copied in BigDecimal.
-        // Prefer the String constructor when you need an exact value.
-        BigDecimal tenCents = new BigDecimal("0.1");
-
-        // for static variables... this is possible
-        // Double Brace Initialization
-        // The Java Language has no syntax for how to create static Collections
-        // in an easy way. Usually you end up in the following way:
-        private static final Set<String> COUNTRIES = new HashSet<String>();
-        static {
-           COUNTRIES.add("DENMARK");
-           COUNTRIES.add("SWEDEN");
-           COUNTRIES.add("FINLAND");
-        }
-
-        // first brace creates Anonymous Inner Class 
-        // and second one declares an instance initializer block
-        private static final Set<String> COUNTRIES = new HashSet<String>() {{
-            add("DENMARK");
-            add("SWEDEN");
-            add("FINLAND");
-        }}
+    public static void main(String[] args) {
+        // main method as an entry point.
+        // java programs starts by running a main method
+        // of the class it intends to run.
+        learnPrimitives();
+        learnArrays();
+        learnBigs();
+        learnStaticVariables();
     }
 }

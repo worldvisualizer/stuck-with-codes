@@ -23,22 +23,22 @@ dependencies {
 }
 
 sourceSets {
-  main {
-    java {
-      srcDir 'src/main/java/hw1CodeCamp'
-      // srcDir 'src/test/java/hw2Tetris'
-      // srcDir 'src/test/java/hw3DBSudoku'
-      // srcDir 'src/test/java/hw4Threads'
+    main {
+        java {
+            srcDir 'src/main/java/hw1CodeCamp'
+            exclude 'src/test/java/hw2Tetris/**'
+            exclude 'src/test/java/hw3DBSudoku/**'
+            exclude 'src/test/java/hw4Threads/**'
+        }
     }
-  }
-  test {
-    java {
-      srcDir 'src/test/java/hw1CodeCamp'
-      // srcDir 'src/test/java/hw2Tetris'
-      // srcDir 'src/test/java/hw3DBSudoku'
-      // srcDir 'src/test/java/hw4Threads'
+    test {
+        java {
+            srcDir 'src/test/java/hw1CodeCamp'
+            exclude 'src/test/java/hw2Tetris/**'
+            exclude 'src/test/java/hw3DBSudoku/**'
+            exclude 'src/test/java/hw4Threads/**'
+        }
     }
-  }
 }
 
 jacoco {
