@@ -6,6 +6,7 @@
  */
 apply plugin: 'java'
 apply plugin: 'jacoco'
+apply plugin: 'checkstyle'
 
 repositories {
     jcenter()
@@ -25,15 +26,15 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDir 'src/main/java/hw1CodeCamp'
-            exclude 'src/test/java/hw2Tetris/**'
-            exclude 'src/test/java/hw3DBSudoku/**'
-            exclude 'src/test/java/hw4Threads/**'
+            srcDirs = ['src/main/java/hw1CodeCamp']
+            exclude 'src/main/java/hw2Tetris/**'
+            exclude 'src/main/java/hw3DBSudoku/**'
+            exclude 'src/main/java/hw4Threads/**'
         }
     }
     test {
         java {
-            srcDir 'src/test/java/hw1CodeCamp'
+            srcDirs = ['src/test/java/hw1CodeCamp']
             exclude 'src/test/java/hw2Tetris/**'
             exclude 'src/test/java/hw3DBSudoku/**'
             exclude 'src/test/java/hw4Threads/**'
@@ -73,6 +74,15 @@ jacocoTestCoverageVerification {
             }
         }
     }
+}
+
+// TODO: learn System property, project property, gradle.properties file.
+task execClass(type: JavaExec) {
+    group = "Execution"
+    description = "Run the main class with JavaExecTask"
+    // execMainPath = project.hasProperty('execMainPath') ? project.getProperty('execMainPath') : ''
+    classpath = sourceSets.main.runtimeClasspath
+    // main = String.format('src/main/java/', execMainPath)
 }
 
 test {
