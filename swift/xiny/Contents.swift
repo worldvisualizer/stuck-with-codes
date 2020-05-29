@@ -44,7 +44,8 @@ rest is discareded.
 print(multilineString)
 
 // Arrays
-// let is pretty strong: doesn't care if arrays are declared, it's still immutable
+// let is pretty strong: doesn't care if arrays are declared,
+// it's still immutable
 let shoppingList = ["catfish", "water", "tulips"]
 let secondElement = shoppingList[1]
 print(shoppingList)
@@ -145,9 +146,8 @@ let forcedString = someOptionalString! // requires an exclamation mark
 let implicitString = unwrappedString // doesn't require an exclamation mark
 
 
-// Control Statements
-
-// Switch: must be exhaustive, does not implicitly fall through like JS
+// Control Statements ---------------------------------------
+// Switch: must be exhaustive, does not implicitly fall through
 func foo2() {
     let vegetable = "red pepper"
     let vegetableComment: String
@@ -163,7 +163,7 @@ func foo2() {
     }
     print(vegetableComment)
 }
-// For-each loop: yeah boiii
+// For-each loop
 for element in shoppingList {
     print(element)
 }
@@ -192,7 +192,8 @@ repeat {
     i += Int.random(in: 0...3)
 } while i < 5 // like a do-while loop in other languages
 
-// Let's do Functions
+
+// Functions ----------------------------------------------
 // Functions: first-class type, can be passed around
 func greet(name: String, day: String) -> String {
     return "Hello \(name), today is \(day)"
@@ -250,16 +251,89 @@ func makeIncrementer() -> ((Int) -> Int) {
 }
 var increment = makeIncrementer()
 increment(7) // returning function and executing that function
+// would the function closure be preserved?
 
 // another example of function as parameters
 func performFunction(
     _ function: (String, String) -> String,
-    on string1: String, 
-    and string2: String) {
+    on string1: String, and string2: String) {
+    
     let result = function(string1, string2)
     print("Result: \(result)")
 }
 // hmm... currying possible?
+
+// multiple return values
+func getGasPrices() -> (Double, Double, Double) {
+    return (3.56, 3.67, 3.32)
+}
+let pricesTuple = getGasPrices()
+// accessing tuple element
+let price = pricesTuple.2
+// object or collection deconstruction
+let (_, price1, _) = pricesTuple
+
+// named return values
+func getGasPrices2() -> (lowest: Double, highest: Double, mid: Double) {
+    return (1, 37, 7)
+}
+getGasPrices2().lowestPrice // valid
+
+// guard statements - useful for avoiding pyramid of doom
+func testGuard() {
+    // guard provide early exits or breaks, placing the error
+    // handler code near the conditions.
+    // places variables it declares in the same scope as the guard statement
+    guard let aNumber = Optional<Int>(7) else {
+        return // guard statements must exit the scope they are in.
+        // usually use return or throw.
+    }
+}
+
+// Closures ----------------------------------------
+
+var numbers = [1, 2, 6]
+// functions are special case closures
+// `->` separates the arguments and return type
+// `in` separates the closure header from the closure body
+numbers.map({
+    (number: Int) -> Int in
+    let result = 3 * number
+    return result
+})
+
+// equivalent
+numbers = numbers.map({ number in 3 * number })
+numbers = numbers.sorted { $0 > $1 } // trailing closure
+
+// Enums -----------------------------------------
+// Enums can optionally be of a specific type or on their own.
+// They can contain methods like classes.
+enum Suit {
+    case spades, hearts, diamonds, clubs
+    var icon: Character {
+        switch self {
+            case .spades:
+                return ...
+            case .hearts:
+            // .....
+        }
+    }
+}
+
+// Enum values allow short hand syntax, no need to type the enum type
+// when the variable is explicitly declared
+var suitValue: Suit = .hearts
+
+
+
+
+
+
+
+
+
+
 
 
 
