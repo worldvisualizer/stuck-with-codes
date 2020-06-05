@@ -1,0 +1,33 @@
+.boxContainer {
+  display: grid;
+  grid-row-gap: 10px;
+}
+
+.outerBox {
+  width: 100px;
+  height: 100px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  text-align: center;
+  font-size: 40px;
+}
+
+.space {
+  height: 10px;
+}
+
+.outerBoxACE {
+  background-color: gray;
+}
+
+.outerBoxBD {
+  background-color: blue;
+}
+
+.outerBoxF {
+  border-style: solid;
+  width: 92px;
+  height: 100px;
+  border-width: 4px;
+  background-color: skyblue;
+}

@@ -1,0 +1,33 @@
+.boxContainer {
+  display: flex;
+  flex-direction: row;
+  /*justify-content: space-between; */
+  align-items: stretch;
+  margin: 0 -5px;
+}
+
+.outerBox {
+  width: 90px;
+  height: 150px;
+  background-color: #eeeff2;
+  border-left-style: dotted;
+  border-left-width: 10px;
+  padding-left: 10px;
+  text-align: left;
+  /* vertical-align: top;*/
+  font-size: 40px;
+  margin: 0 5px;
+}
+
+.space {
+  width: 10px;
+  height: 10px;
+}
+
+#outerBoxF {
+  border-style: solid;
+  width: 92px;
+  border-width: 4px;
+  background-color: skyblue;
+  vertical-align: bottom;
+}
