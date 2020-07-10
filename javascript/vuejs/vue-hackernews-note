@@ -1,0 +1,20 @@
+what is Vue.mixin?
+what is Vue.filters?
+application shows real-time event updates. am guessing some firebase app is hosted
+    - how am I sure? where's the uri?
+application -> gets request for certain url -> gets api responses -> change components' state, route to appropriate components -> render
+
+
+
+app.js has:
+    - createRouter, createStore, sync(router, store)
+    - mixins, filters (rendering related?)
+    - ability to create itself and supply it to client/server: createApp
+
+router.js has:
+    - ability to route requests to views: require('some view.js -> that has .vue associated')
+    - path and component
+    - getMatchedComponents()
+
+components:
+    - server side rendering caching. what server though?
