@@ -8,7 +8,9 @@ function check_installed() {
 }
 
 check_installed brew
-brew install fish
-
-echo "chsh -s /usr/local/bin/fish" >> ~/.bashrc
+brew install coreutils
+echo 'export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"' >> ~/.bashrc
+echo 'export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"' >> ~/.bashrc
+echo 'alias ls="ls --color"' >> ~/.bashrc
+echo 'alias l="ls -lah"' >> ~/.bashrc
 source ~/.bashrc
