@@ -21,9 +21,13 @@ def extractWordFeatures(x):
     @return dict: feature vector representation of x.
     Example: "I am what I am" --> {'I': 2, 'am': 2, 'what': 1}
     """
-    # BEGIN_YOUR_CODE (our solution is 4 lines of code, but don't worry if you deviate from this)
-    raise Exception("Not implemented yet")
-    # END_YOUR_CODE
+    result = {}
+    for key in x.split(' '):
+        if key in result:
+            result[key] += 1
+        else:
+            result[key] = 1
+    return result
 
 ############################################################
 # Problem 3b: stochastic gradient descent
@@ -43,9 +47,7 @@ def learnPredictor(trainExamples, validationExamples, featureExtractor, numIters
     identity function may be used as the featureExtractor function during testing.
     '''
     weights = {}  # feature => weight
-    # BEGIN_YOUR_CODE (our solution is 12 lines of code, but don't worry if you deviate from this)
-    raise Exception("Not implemented yet")
-    # END_YOUR_CODE
+    # TODO
     return weights
 
 ############################################################
@@ -63,10 +65,10 @@ def generateDataset(numExamples, weights):
     # y should be 1 or -1 as classified by the weight vector.
 
     # Note that the weight vector can be arbitrary during testing. 
+    # TODO
     def generateExample():
-        # BEGIN_YOUR_CODE (our solution is 2 lines of code, but don't worry if you deviate from this)
-        raise Exception("Not implemented yet")
-        # END_YOUR_CODE
+        phi = 0
+        y = 0
         return (phi, y)
     return [generateExample() for _ in range(numExamples)]
 
@@ -81,9 +83,8 @@ def extractCharacterFeatures(n):
     You may assume that n >= 1.
     '''
     def extract(x):
-        # BEGIN_YOUR_CODE (our solution is 6 lines of code, but don't worry if you deviate from this)
-        raise Exception("Not implemented yet")
-        # END_YOUR_CODE
+        # TODO
+        pass
     return extract
 
 ############################################################
