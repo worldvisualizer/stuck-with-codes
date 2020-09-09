@@ -25,27 +25,27 @@ void rightdosomething(int a, int b = 4) {
 namespace First {
     namespace Nested {
         void foo() {
-			// do something            
+            // do something            
         }
     }
 }
 
 namespace Second {
-	void foo() {
-		// do something as well, 
-	} // this function is limited to here
+    void foo() {
+        // do something as well, 
+    } // this function is limited to here
 }
 
 void foo() {
-	// this is global scope!
+    // this is global scope!
 }
 
 int main() {
     using namespace Second;
-	// now let's see namescop in action
-	Second::foo();
-	First::Nested::foo();
-	::foo(); // simply foo() doesn't work, apparently
+    // now let's see namescop in action
+    Second::foo();
+    First::Nested::foo();
+    ::foo(); // simply foo() doesn't work, apparently
 }
 
 
