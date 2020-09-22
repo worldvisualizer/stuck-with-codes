@@ -1,2 +1,6 @@
-MNIST
+mnist
+catsdogsimages
 torch-env
+.ipynb_checkpoints
+training_data.npy
+

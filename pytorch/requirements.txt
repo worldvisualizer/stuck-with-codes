@@ -4,3 +4,5 @@ jupyterlab
 pandas
 scipy
 matplotlib
+tqdm
+opencv-python
