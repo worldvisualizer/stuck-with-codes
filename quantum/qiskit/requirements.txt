@@ -1,0 +1,6 @@
+qiskit
+qiskit-ibmq-provider
+numpy
+jupyterlab
+matplotlib
+
