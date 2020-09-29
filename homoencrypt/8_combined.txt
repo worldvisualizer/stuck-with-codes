@@ -12,14 +12,14 @@ Microsoft SEAL version: 3.5.6
 | 5. Rotation                | 5_rotation.cpp             |
 | 6. Serialization           | 6_serialization.cpp        |
 | 7. Performance Test        | 7_performance.cpp          |
-| 8. Desilo Test             | 8_desilo.cpp               |
+| 8. HE Combined Test        | 8_combined.cpp             |
 +----------------------------+----------------------------+
 [      0 MB] Total allocation from the memory pool
 
 > Run example (1 ~ 8) or exit (0): 8
 
 +--------------------------------------+
-|         Example: Desilo Test         |
+|    Example: HE Combined Test         |
 +--------------------------------------+
 /
 | Encryption parameters :

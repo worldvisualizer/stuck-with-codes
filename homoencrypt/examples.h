@@ -34,7 +34,7 @@ void example_serialization();
 
 void example_performance_test();
 
-void example_desilo_test();
+void example_combined_test();
 
 /*
 Helper function: Prints the name of the example in a fancy banner.

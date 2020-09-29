@@ -24,7 +24,7 @@ int main()
         cout << "| 5. Rotation                | 5_rotation.cpp             |" << endl;
         cout << "| 6. Serialization           | 6_serialization.cpp        |" << endl;
         cout << "| 7. Performance Test        | 7_performance.cpp          |" << endl;
-        cout << "| 8. Desilo Test             | 8_desilo.cpp               |" << endl;
+        cout << "| 8. HE Combined Test        | 8_combined.cpp             |" << endl;
         cout << "+----------------------------+----------------------------+" << endl;
 
         /*
@@ -93,7 +93,7 @@ int main()
             break;
 
         case 8:
-            example_desilo_test();
+            example_combined_test();
             break;
 
         case 0:

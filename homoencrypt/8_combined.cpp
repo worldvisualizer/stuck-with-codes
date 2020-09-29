@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
 
 #include "examples.h"
@@ -6,9 +5,9 @@
 using namespace std;
 using namespace seal;
 
-void example_desilo_test()
+void example_combined_test()
 {
-    print_example_banner("Example: Desilo Test");
+    print_example_banner("Example: HE Combined Test");
 
     /*
     In this example we demonstrate evaluating the following equation
