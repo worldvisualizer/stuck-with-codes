@@ -15,4 +15,5 @@ println(2 ^ 2)
 println(12 % 10)
 # julia has integer under/overflow
 println(10^19)
-big(10)^19
+println(big(10)^19)
+println(1e19)
