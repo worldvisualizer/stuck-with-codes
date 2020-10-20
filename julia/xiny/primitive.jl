@@ -17,3 +17,7 @@ println(12 % 10)
 println(10^19)
 println(big(10)^19)
 println(1e19)
+
+# strings are utf-8 encoded. if they contain only ASCII,
+# they can be changed and indexed. this is a lazy and safe by julia
+ascii("this is a string")
