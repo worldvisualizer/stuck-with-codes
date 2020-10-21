@@ -32,7 +32,7 @@ vector<int> read_normal_line(vector<string> &caseIds, const string line) {
             continue;
         }
         try {
-            row.push_back(stoi(lineStream, &sz, 10)); // convert to int
+            row.push_back(stold(lineStream, &sz)); // convert to int
         } catch (invalid_argument& e) {
             cout << e.what() << " original input " << lineStream << endl;
         }
