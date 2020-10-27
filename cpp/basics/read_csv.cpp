@@ -32,7 +32,7 @@ vector<int> read_normal_line(vector<string> &caseIds, const string line) {
             continue;
         }
         try {
-            row.push_back(stold(lineStream, &sz)); // convert to int
+            row.push_back(stoi(lineStream, &sz, 10)); // convert to double
         } catch (invalid_argument& e) {
             cout << e.what() << " original input " << lineStream << endl;
         }
@@ -40,10 +40,13 @@ vector<int> read_normal_line(vector<string> &caseIds, const string line) {
     return row;
 }
 
-void read_csv(
-    vector<string> &headers, vector<vector<int>> &lines,
+int read_csv(
+    vector<string> &headers,
+    vector<vector<int>> &lines,
     vector<string> &caseIds,
-    const string &relativePath, const string &filename
+    const string &relativePath,
+    const string &filename,
+    bool vertical_read
 ) {   
     ifstream csvFile;
     string strPathCSVFile = relativePath + '/' + filename;
@@ -53,21 +56,39 @@ void read_csv(
         cout << "Path is wrong" << endl;
         exit(EXIT_FAILURE);
     }
+
+    int linecount = 0;
+    vector<vector<int>> reads;
     string line;
     getline(csvFile, line);
     headers = read_header(line);
     while (getline(csvFile, line)) {
         if (line.empty())
             continue;
-        lines.push_back(read_normal_line(caseIds, line));
+	linecount++;
+        reads.push_back(read_normal_line(caseIds, line));
     }
+
+    if (vertical_read) {
+       for (int i = 0; i < reads[0].size(); i++) {
+	   vector<int> vertical_line;
+           for (int j = 0; j < reads.size(); j++) {
+	       vector<int> horizontal_read = reads[j];
+	       vertical_line.push_back(horizontal_read[i]);
+           }
+	   lines.push_back(vertical_line);
+       }
+    } else {
+	lines = reads;
+    }
+    return linecount;
 }
 
 int main(int argc, const char **argv) {
     vector<string> headers;
     vector<string> caseIds;
     vector<vector<int>> features;
-    read_csv(headers, features, caseIds, argv[1], argv[2]);
+    int casecount = read_csv(headers, features, caseIds, argv[1], argv[2], true);
 
     for (size_t j = 0; j < caseIds.size(); j++) {
         cout << caseIds[j] << ",";
@@ -77,9 +98,10 @@ int main(int argc, const char **argv) {
         for (size_t j = 0; j < line.size(); j++) {
             cout << line[j] << ",";
         }
-        cout << endl;
+        cout << line.size() << endl;
     }
 
     cout << "--------------------------------" << endl;
+    cout << "number of cases: " << casecount << endl;
     return 0;
 }

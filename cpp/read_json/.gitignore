@@ -1,0 +1,7 @@
+json_reader
+coeff.json
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+nlohmann_json/

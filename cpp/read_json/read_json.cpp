@@ -15,6 +15,19 @@ json read_json(string filepath) {
 int main() {
     cout << "hello!" << endl;
     auto j = read_json("coeff.json");
-    cout << j << endl;
-
+    auto coef = j["coef"];
+    int i = 0;
+    for (auto &array : coef) {
+	cout << "printing label " << i << "th's coeffs:" << endl;;
+	int j = 0;
+	for (auto &elem : array) {
+	    if (j == 20) {
+		break;
+	    }
+	    cout << elem << " ";
+	    j++;
+	}
+	cout << endl;
+	i++;
+    }
 }
