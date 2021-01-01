@@ -1,4 +1,3 @@
-
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.3.72" 
     application 
@@ -19,5 +18,5 @@ dependencies {
 }
 
 application {
-    mainClass.set("amaze.puzzles.Puzzle1")
+    mainClass.set("amaze.puzzles.Puzzle1Kt")
 }

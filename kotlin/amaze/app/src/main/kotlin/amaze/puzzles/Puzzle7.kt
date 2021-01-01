@@ -1,10 +1,10 @@
-package main.kotlin.amaze.puzzles
+package amaze.puzzles
 
-import main.kotlin.amaze.LlamaAction
-import main.kotlin.amaze.LlamaController
-import main.kotlin.amaze.Maze
-import main.kotlin.amaze.core.GameController
-import main.kotlin.amaze.toMaze
+import amaze.LlamaAction
+import amaze.LlamaController
+import amaze.Maze
+import amaze.core.GameController
+import amaze.toMaze
 
 fun main() {
     GameController(puzzles[6].toMaze(Puzzle7())).startGame()

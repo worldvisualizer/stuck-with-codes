@@ -1,7 +1,7 @@
-package main.kotlin.amaze
+package amaze
 
-import main.kotlin.amaze.core.assets.Sound
-import main.kotlin.amaze.core.assets.Sounds
+import amaze.core.assets.Sound
+import amaze.core.assets.Sounds
 
 private const val MOVEMENT_SPEED = 1.0
 private const val QUARTER_ROTATION_COUNTER_CLOCKWISE = -Math.PI / 2
