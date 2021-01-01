@@ -1,6 +1,6 @@
-package main.kotlin.amaze.entity
+package amaze.entity
 
-import main.kotlin.amaze.Llama
+import amaze.Llama
 import java.awt.Graphics2D
 
 /**

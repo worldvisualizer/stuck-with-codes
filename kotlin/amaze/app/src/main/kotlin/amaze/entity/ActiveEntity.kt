@@ -1,4 +1,4 @@
-package main.kotlin.amaze.entity
+package amaze.entity
 
 
 interface ActiveEntity : Entity {

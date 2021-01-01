@@ -1,9 +1,9 @@
-package main.kotlin.amaze.entity
+package amaze.entity
 
-import main.kotlin.amaze.Llama
-import main.kotlin.amaze.LlamaState
-import main.kotlin.amaze.core.assets.Images
-import main.kotlin.amaze.core.assets.draw
+import amaze.Llama
+import amaze.LlamaState
+import amaze.core.assets.Images
+import amaze.core.assets.draw
 import java.awt.Graphics2D
 
 private val FORREST_IMAGES = listOf(

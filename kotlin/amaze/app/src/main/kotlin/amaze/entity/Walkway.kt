@@ -1,7 +1,7 @@
-package main.kotlin.amaze.entity
+package amaze.entity
 
-import main.kotlin.amaze.Llama
-import main.kotlin.amaze.core.assets.Images
+import amaze.Llama
+import amaze.core.assets.Images
 import java.awt.Graphics2D
 import java.awt.Rectangle
 import java.awt.TexturePaint

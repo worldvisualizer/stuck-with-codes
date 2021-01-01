@@ -1,10 +1,10 @@
-package main.kotlin.amaze.entity
+package amaze.entity
 
-import main.kotlin.amaze.Llama
-import main.kotlin.amaze.LlamaState
-import main.kotlin.amaze.core.assets.Images
-import main.kotlin.amaze.core.assets.draw
-import main.kotlin.amaze.entity.VanishingWalkwayState.*
+import amaze.Llama
+import amaze.LlamaState
+import amaze.core.assets.Images
+import amaze.core.assets.draw
+import amaze.entity.VanishingWalkwayState.*
 import java.awt.Graphics2D
 
 enum class VanishingWalkwayState {
