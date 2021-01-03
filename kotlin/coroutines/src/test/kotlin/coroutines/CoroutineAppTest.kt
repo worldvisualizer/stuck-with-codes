@@ -3,13 +3,31 @@
  */
 package coroutines
 
+import kotlinx.coroutines.* 
+
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class AppTest {
-    @Test fun testAppHasAGreeting() {
+    @Test
+    fun testAppHasAGreeting() {
         val classUnderTest = CoroutineApp()
         println("hello, I am testing CoroutineApp")
         assertNotNull(classUnderTest.greeting, "app should have a greeting")
+    }
+
+    @Test
+    fun testMySuspendingFunction() = runBlocking<Unit> {
+        // assume that coroutine will update the
+        // variable set in main thread. this is neat.
+        var retval = 0
+        // job joining is neat.
+        val job = GlobalScope.launch {
+            retval = CoroutineApp().suspendingFunc()
+        }
+        job.join()
+        assertNotNull(retval)
+        assertEquals(retval, 42)
     }
 }
