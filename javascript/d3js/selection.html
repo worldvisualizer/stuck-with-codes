@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+  <div class="header">
+  	<div class="elem1"></div>
+  	<div class="elem2"></div>
+  </div>
+  <svg id="circle" height=500 width=1000></svg>
+  <script src="https://d3js.org/d3.v6.js"></script>
+  <script>
+  	const circle = d3.select("circle")
+  	circle
+  	  .attr("r", 10)
+  	  .attr("cx", 20)
+  	  .attr("cy", 23)
+  	  .style("stroke-width", 2)
+  	  .classed("highlight", true)
+  	  .text("hello")
+  </script>
+</html>
