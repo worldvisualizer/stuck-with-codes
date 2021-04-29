@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 VERSION=$1
-if [ -z "$var" ]; then
-    echo "you need to set the version of the Golang. Recommended: 1.15"
+if [ -z "$1" ]; then
+    echo "you need to set the version of the Golang via VERSION. Recommended: 1.15"
+    exit 1
 fi
 
 EXEC=go$VERSION.linux-amd64.tar.gz
