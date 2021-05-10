@@ -1,21 +1,16 @@
 import time
 import asyncio
 from fastapi import FastAPI, APIRouter
+from router import router
 
-router = APIRouter()
+
 app = FastAPI()
+app.include_router(router)
+
 count = 0
-
-def counter():
-    global count
-    count += 1
-
-def wait_function():
-    while True:
-        counter()
 
 @app.get("/")
 def home():
-    return {"message": "hello world", "counter": counter}
+    return {"message": "hello world", "counter": count}
 
-asyncio.run(wait_function())
+

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package tutorial;
+
+message Constants {
+enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+}
+
+enum JosephType {
+    SEUNGMYUNG = 0;
+    JOSEPH = 1;
+    JUNGHO = 2;
+    KUNGYU = 4;
+}
+}
